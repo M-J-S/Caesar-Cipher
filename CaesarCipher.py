@@ -1,21 +1,13 @@
 # Caesar Cipher
 
+# hash table with alphabet linked to a number 1-26
 CC = {}
-CC2 = {}
-test= ""
-
-userMessage = input("Enter a message you want to encrypt using the Caesar Cipher: ")
-keyValue = 5     #= input("Enter the key value (1-25) to encrypt your message using the Caesar Cipher: ")
 
 
-charList = list(userMessage)
-print(charList)
+# two list data structures to hold the encrypted message (shiftList) and hold the original numeric values (numericList)
+numericList = []
+shiftList = []
 
-
-for x in range (0, len(userMessage)):
-    test = charList[x]
-    print(test)
-    
 
 CC['a'] = '1'
 CC['b'] = '2'
@@ -45,30 +37,58 @@ CC['y'] = '25'
 CC['z'] = '26'
 CC[' '] = '27'
 
-CC2[str((1 + keyValue)%26)] = 'a'
-CC2[str((2 + keyValue)%26)] = 'b'
-CC2[str((3 + keyValue)%26)] = 'c'
-CC2[str((4 + keyValue)%26)] = 'd'
-CC2[str((5 + keyValue)%26)] = 'e'
-CC2[str((6 + keyValue)%26)] = 'f'
-CC2[str((7 + keyValue)%26)] = 'g'
-CC2[str((8 + keyValue)%26)] = 'h'
-CC2[str((9 + keyValue)%26)] = 'i'
-CC2[str((10 + keyValue)%26)] = 'j'
-CC2[str((11 + keyValue)%26)] = 'k'
-CC2[str((12 + keyValue)%26)] = 'l'
-CC2[str((13 + keyValue)%26)] = 'm'
-CC2[str((14 + keyValue)%26)] = 'n'
-CC2[str((15 + keyValue)%26)] = 'o'
-CC2[str((16 + keyValue)%26)] = 'p'
-CC2[str((17 + keyValue)%26)] = 'q'
-CC2[str((18 + keyValue)%26)] = 'r'
-CC2[str((19 + keyValue)%26)] = 's'
-CC2[str((20 + keyValue)%26)] = 't'
-CC2[str((21+ keyValue)%26)] = 'u'
-CC2[str((22 + keyValue)%26)] = 'v'
-CC2[str((23 + keyValue)%26)] = 'w'
-CC2[str((24 + keyValue)%26)] = 'x'
-CC2[str((25 + keyValue)%26)] = 'y'
-CC2[str((26 + keyValue)%26)] = 'z'
-CC2[str(27)] = ' '
+CC['1'] = 'a'
+CC['2'] = 'b'
+CC['3'] = 'c'
+CC['4'] = 'd'
+CC['5'] = 'e'
+CC['6'] = 'f'
+CC['7'] = 'g'
+CC['8'] = 'h'
+CC['9'] = 'i'
+CC['10'] = 'j'
+CC['11'] = 'k'
+CC['12'] = 'l'
+CC['13'] = 'm'
+CC['14'] = 'n'
+CC['15'] = 'o'
+CC['16'] = 'p'
+CC['17'] = 'q'
+CC['18'] = 'r'
+CC['19'] = 's'
+CC['20'] = 't'
+CC['21'] = 'u'
+CC['22'] = 'v'
+CC['23'] = 'w'
+CC['24'] = 'x'
+CC['25'] = 'y'
+CC['26'] = 'z'
+CC['27'] = ' '
+
+
+#get user input for the original message to be encrypted and for the key value (if number is greater than 26 the key will loop back to 1, EX: 27 = keyValue 1)
+userMessage = input("Enter a message you want to encrypt using the Caesar Cipher: ")
+keyValue = int(input("Enter the key value (1-26) to encrypt your message using the Caesar Cipher: "))
+
+
+#charList is a list of all chars in the user's message 
+charList = list(userMessage)
+
+#for loop that will run through charList and add the keyValue to the originalValue of a char then append the encrypted chars to shiftList
+for x in range (0, len(userMessage)):
+    messageChar = charList[x]
+
+    numericList.append(CC[messageChar])
+
+    
+    if(CC[messageChar] == '27'):
+        messageNumber = int(CC[messageChar])
+    else:
+        messageNumber = ((int(CC[messageChar]) + keyValue)%26)
+    
+    
+    shiftList.append(CC[str(messageNumber)])
+    
+
+encryptedString = ''.join(shiftList)
+print(encryptedString)
