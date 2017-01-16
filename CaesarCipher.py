@@ -2,6 +2,7 @@
 
 CC = {}
 CC2 = {}
+test= ""
 
 userMessage = input("Enter a message you want to encrypt using the Caesar Cipher: ")
 keyValue = 5     #= input("Enter the key value (1-25) to encrypt your message using the Caesar Cipher: ")
@@ -10,13 +11,11 @@ keyValue = 5     #= input("Enter the key value (1-25) to encrypt your message us
 charList = list(userMessage)
 print(charList)
 
-if charList[0] == CC:
-    print("test")
 
-
-
-
-
+for x in range (0, len(userMessage)):
+    test = charList[x]
+    print(test)
+    
 
 CC['a'] = '1'
 CC['b'] = '2'
@@ -44,6 +43,7 @@ CC['w'] = '23'
 CC['x'] = '24'
 CC['y'] = '25'
 CC['z'] = '26'
+CC[' '] = '27'
 
 CC2[str((1 + keyValue)%26)] = 'a'
 CC2[str((2 + keyValue)%26)] = 'b'
@@ -71,7 +71,4 @@ CC2[str((23 + keyValue)%26)] = 'w'
 CC2[str((24 + keyValue)%26)] = 'x'
 CC2[str((25 + keyValue)%26)] = 'y'
 CC2[str((26 + keyValue)%26)] = 'z'
-
-
-
-
+CC2[str(27)] = ' '
