@@ -82,7 +82,7 @@ def encrypt():
     #charList is a list of all chars in the user's message 
     encryptCharList = list(userMessage)
 
-#for loop that will run through charList and add the keyValue to the originalValue of a char then append the encrypted chars to shiftList
+    #for loop that will run through charList and add the keyValue to the originalValue of a char then append the encrypted chars to shiftList
     for x in range (0, len(userMessage)):
         encryptMessageChar = encryptCharList[x]
 
