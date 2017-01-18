@@ -5,8 +5,11 @@ CC = {}
 
 
 # two list data structures to hold the encrypted message (shiftList) and hold the original numeric values (numericList)
-numericList = []
-shiftList = []
+encryptNumericList = []
+encryptShiftList = []
+
+decryptNumericList = []
+decryptShiftList = []
 
 
 CC['a'] = '1'
@@ -66,29 +69,61 @@ CC['26'] = 'z'
 CC['27'] = ' '
 
 
-#get user input for the original message to be encrypted and for the key value (if number is greater than 26 the key will loop back to 1, EX: 27 = keyValue 1)
-userMessage = input("Enter a message you want to encrypt using the Caesar Cipher: ")
-keyValue = int(input("Enter the key value (1-26) to encrypt your message using the Caesar Cipher: "))
 
 
-#charList is a list of all chars in the user's message 
-charList = list(userMessage)
+
+def encrypt():
+    
+
+    #get user input for the original message to be encrypted and for the key value (if number is greater than 26 the key will loop back to 1, EX: 27 = keyValue 1)
+    userMessage = input("Enter a message you want to encrypt using the Caesar Cipher: ")
+    keyValue = int(input("Enter the key value (1-26) to encrypt your message using the Caesar Cipher: "))
+
+    #charList is a list of all chars in the user's message 
+    encryptCharList = list(userMessage)
 
 #for loop that will run through charList and add the keyValue to the originalValue of a char then append the encrypted chars to shiftList
-for x in range (0, len(userMessage)):
-    messageChar = charList[x]
+    for x in range (0, len(userMessage)):
+        encryptMessageChar = encryptCharList[x]
 
-    numericList.append(CC[messageChar])
+        encryptNumericList.append(CC[encryptMessageChar])
 
     
-    if(CC[messageChar] == '27'):
-        messageNumber = int(CC[messageChar])
-    else:
-        messageNumber = ((int(CC[messageChar]) + keyValue)%26)
+        if(CC[encryptMessageChar] == '27'):
+            encryptMessageNumber = int(CC[encryptMessageChar])
+        else:
+            encryptMessageNumber = ((int(CC[encryptMessageChar]) + keyValue)%26)
     
     
-    shiftList.append(CC[str(messageNumber)])
+        encryptShiftList.append(CC[str(encryptMessageNumber)])
+    
+    encryptedString = ''.join(encryptShiftList)
+    print(encryptedString)
+
+def decrypt():
+    userMessage = input("Enter a message you want to decrypt using the Caesar Cipher: ")
+    keyValue = int(input("Enter the key value (1-26) to decrypt your message using the Caesar Cipher: "))
+
+    #charList is a list of all chars in the user's message 
+    decryptCharList = list(userMessage)
+
+    for x in range (0, len(userMessage)):
+        decryptMessageChar = decryptCharList[x]
+
+        decryptNumericList.append(CC[decryptMessageChar])
+
+    
+        if(CC[decryptMessageChar] == '27'):
+            decryptMessageNumber = int(CC[decryptMessageChar])
+        else:
+            decryptMessageNumber = ((int(CC[decryptMessageChar]) - keyValue)%26)
+    
+    
+        decryptShiftList.append(CC[str(decryptMessageNumber)])
+
+    decryptedString = ''.join(decryptShiftList)
+    print(decryptedString)
     
 
-encryptedString = ''.join(shiftList)
-print(encryptedString)
+encrypt()
+decrypt()
