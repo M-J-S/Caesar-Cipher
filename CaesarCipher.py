@@ -124,6 +124,6 @@ def decrypt():
     decryptedString = ''.join(decryptShiftList)
     print(decryptedString)
     
-
+#just asks user to encrypt a message and then asks the user for decryption
 encrypt()
 decrypt()
